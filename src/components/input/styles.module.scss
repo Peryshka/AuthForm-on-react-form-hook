@@ -54,6 +54,11 @@ input:focus {
   color: blue;
 }
 
+input:focus ~ label, label:focus {
+  color: blue;
+}
+
+
 
 
 

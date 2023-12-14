@@ -3,16 +3,24 @@ import {NavLink, Outlet} from 'react-router-dom';
 import styles from "../layout/styles.module.scss";
 
 const Layout = () => {
-  return(
+  return (
     <div className={styles.wrap}>
-      <header className={styles.header}>
-        <NavLink to ="/">Home</NavLink>
-        <NavLink to="/sign-in">Login</NavLink>
-        <NavLink to="/sign-up">Sign Up</NavLink>
+      <header>
+        <nav className={styles.menu}>
+          <li>
+            <NavLink to="/">Home</NavLink>
+          </li>
+          <li>
+            <NavLink to="/sign-in">Login</NavLink>
+          </li>
+          <li>
+            <NavLink to="/sign-up">Sign Up</NavLink>
+          </li>
+        </nav>
       </header>
       <div className={styles.container}>
         <div className={styles.mainFormWrap}>
-          <Outlet />
+          <Outlet/>
         </div>
 
       </div>
@@ -21,3 +29,4 @@ const Layout = () => {
 }
 
 export default Layout;
+

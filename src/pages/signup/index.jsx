@@ -73,7 +73,6 @@ const Signup = () => {
   }
 
 
-
   return (
     <div className={styles.formWrap}>
       <Titlepart
@@ -87,8 +86,8 @@ const Signup = () => {
         <Controller
           name="fullName"
           control={control}
-          rules={{ required: true }}
-          render={({ field }) =>(
+          rules={{required: true}}
+          render={({field}) => (
             <AntInput
               {...field}
               label="Full Name"
@@ -103,8 +102,8 @@ const Signup = () => {
         <Controller
           name="emailAddress"
           control={control}
-          rules={{ required: true }}
-          render={({ field }) =>(
+          rules={{required: true}}
+          render={({field}) => (
             <AntInput
               {...field}
               label="Email Address"
@@ -119,14 +118,14 @@ const Signup = () => {
         <Controller
           name="password"
           control={control}
-          rules={{ required: true }}
-          render={({ field}) => (<Input
+          rules={{required: true}}
+          render={({field}) => (<Input
             {...field}
             label="Password"
             star="*"
-            type={showPassword? 'text' : 'password'}
+            type={showPassword ? 'text' : 'password'}
             onClick={handleChangeIcon}
-            hidden={showPassword? openEye: hiddenImg}
+            hidden={showPassword ? openEye : hiddenImg}
             className={errors.password ? styles.emptyInput : ''}
           />)}
         />
@@ -136,8 +135,8 @@ const Signup = () => {
         <Controller
           name="confirmPassword"
           control={control}
-          rules={{ required: false }}
-          render={({ field }) =>(
+          rules={{required: false}}
+          render={({field}) => (
             <Input
               {...field}
               label="Confirm Password"
@@ -150,7 +149,7 @@ const Signup = () => {
             />)}
         />
 
-          <p className={styles.errorText}>{errors.confirmPassword?.message}</p>
+        <p className={styles.errorText}>{errors.confirmPassword?.message}</p>
 
         <Terms
           text="I have read and agree to the"
@@ -171,3 +170,4 @@ const Signup = () => {
 }
 
 export default Signup;
+

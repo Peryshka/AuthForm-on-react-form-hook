@@ -1,5 +1,5 @@
 .inputWrap {
-  display : flex;
+  display: flex;
   margin-bottom: 16px;
 
   .label {
@@ -44,16 +44,50 @@
 }
 
 
-input:focus {
-  outline: none !important;
-  border-color: blue;
-  transition: 0.3s ease;
-}
+//input:focus {
+//  outline: none !important;
+//  border-color: blue;
+//  transition: 0.3s ease;
+//}
+//
+//.label input:focus + label,
+//.label input:not(:placeholder-shown) + label{
+//  color: blue;
+//}
+//
+//.label label.focused {
+//  color: blue;
+//}
 
-.label input:focus + .labeltex{
+
+//.form-fields-group {
+//  position: relative;
+//}
+//
+//.form-fields-group-label {
+//  position: absolute;
+//  font-size: 13px;
+//  color: #27252a;
+//  font-family: 'Roboto', sans-serif;
+//  top: 10px;
+//  left: 15px;
+//}
+
+//.form-fields-input {
+//  width: 300px;
+//  padding: 30px 15px 10px;
+//  border: none;
+//  background: #EAEAEE;
+//  color: red;
+//  border-radius: 5px;
+//  font-family: 'Roboto', sans-serif;
+//  font-size: 15px;
+//}
+
+input:focus ~ label, label:focus {
   color: blue;
+  border: 1px solid blue;
 }
-
 
 
 

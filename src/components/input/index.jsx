@@ -2,8 +2,6 @@ import React from 'react';
 import styles from './styles.module.scss';
 import clsx from "clsx";
 
-
-
 const Input = (props) => {
   const {
     label,
@@ -20,7 +18,7 @@ const Input = (props) => {
   const emptyInput = clsx(
     styles.input,
     className,
-    {'emptyInput' : emptyField}
+    {'emptyInput': emptyField}
   )
 
   return (
@@ -32,7 +30,7 @@ const Input = (props) => {
         </div>
         {condition && (
           <div>
-            <img src={hidden} alt="hidden" className={styles.hidden} onClick={onClick} />
+            <img src={hidden} alt="hidden" className={styles.hidden} onClick={onClick}/>
           </div>
         )}
         <input
@@ -48,3 +46,4 @@ const Input = (props) => {
 }
 
 export default Input;
+

@@ -23,19 +23,19 @@ const Login = () => {
     control,
     formState: {errors}
   } = useForm();
-   const handleTypeChange = (e) => {
-     setPassword(e.target.value);
-   }
+  const handleTypeChange = (e) => {
+    setPassword(e.target.value);
+  }
 
-   const handleChangeIcon = () => {
-     setShowPassword(!showPassword);
-   }
+  const handleChangeIcon = () => {
+    setShowPassword(!showPassword);
+  }
 
-   const onSubmit = (data) => {
-     console.log(data);
-   }
+  const onSubmit = (data) => {
+    console.log(data);
+  }
 
-   return (
+  return (
     <div className={styles.formWrap}>
       <Titlepart
         img={logoImg}
@@ -43,47 +43,47 @@ const Login = () => {
         subtitle="Welcome back, please enter your details."
         googleImg={googleImg2}
       />
-     <form onSubmit={handleSubmit(onSubmit)}>
-       <Controller
-         name="emailAddress"
-         control={control}
-         rules={{ required: true }}
-         render={({ field }) =>( <AntInput
-           {...field}
-           label="Email Address"
-           star="*"
-           type="email"
-           className={errors.emailAddress ? styles.emptyInput : ''}
-         />)}
-       />
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <Controller
+          name="emailAddress"
+          control={control}
+          rules={{required: true}}
+          render={({field}) => (<AntInput
+            {...field}
+            label="Email Address"
+            star="*"
+            type="email"
+            className={errors.emailAddress ? styles.emptyInput : ''}
+          />)}
+        />
 
-       {errors.emailAddress && <p className={styles.errorText}>Email Address is a required field!</p>}
+        {errors.emailAddress && <p className={styles.errorText}>Email Address is a required field!</p>}
 
-       <Controller
-         name="password"
-         control={control}
-         rules={{ required: true }}
-         render={({ field, fieldState}) => (<Input
-           {...field}
-           label="Password"
-           star="*"
-           type={showPassword? 'text' : 'password'}
-           onClick={handleChangeIcon}
-           hidden={showPassword? openEye: hiddenImg}
-           className={errors.password ? styles.emptyInput : ''}
-         />)}
-       />
+        <Controller
+          name="password"
+          control={control}
+          rules={{required: true}}
+          render={({field, fieldState}) => (<Input
+            {...field}
+            label="Password"
+            star="*"
+            type={showPassword ? 'text' : 'password'}
+            onClick={handleChangeIcon}
+            hidden={showPassword ? openEye : hiddenImg}
+            className={errors.password ? styles.emptyInput : ''}
+          />)}
+        />
 
-       {errors.password && <p className={styles.errorText}> Password is a required field!</p>}
+        {errors.password && <p className={styles.errorText}> Password is a required field!</p>}
 
-       <Terms
-         {...register('rememberMe')}
-         text="Remember me"
-       />
-       <Button
-         children="Log in"
-       />
-     </form>
+        <Terms
+          {...register('rememberMe')}
+          text="Remember me"
+        />
+        <Button
+          children="Log in"
+        />
+      </form>
       <LinkBlock
         text="Don’t have an account?"
         link="Sign Up"

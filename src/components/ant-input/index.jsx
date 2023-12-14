@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Input } from 'antd';
 import clsx from 'clsx';
-import styles from "../input/styles.module.scss";
+import styles from "./styles.module.scss";
 
 
 const AntInput = (props) => {
@@ -16,6 +16,7 @@ const AntInput = (props) => {
     className
   } = props;
   const condition = type === 'password' || type === 'text';
+
   const emptyField = value === '';
   const emptyInput = clsx(
     styles.input,
@@ -24,9 +25,9 @@ const AntInput = (props) => {
   )
   return(
     <div className={styles.inputWrap}>
-      <label className={styles.label}>
+      <div className={styles.label}>
         <div className={styles.labelText}>
-          <span className={styles.labeltex}>{label}</span>
+          <label htmlFor="inputField" className={styles.labeltex}>{label}</label>
           <span className={styles.star}>{star}</span>
         </div>
         {condition && (
@@ -36,13 +37,13 @@ const AntInput = (props) => {
         )}
         <Input
           type={type}
+          id="inputField"
           value={value}
           onChange={onChange}
           size="large"
           className={emptyInput}
-
         />
-      </label>
+      </div>
     </div>
   )
 }
