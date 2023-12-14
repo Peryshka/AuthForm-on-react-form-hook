@@ -1,0 +1,59 @@
+.inputWrap {
+  display : flex;
+  margin-bottom: 16px;
+
+  .label {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+
+    .labelText {
+      display: flex;
+      margin-bottom: 5px;
+
+      .labeltex {
+        font-size: 12px;
+        font-style: normal;
+        line-height: normal;
+        color: #1B2B41B8;
+      }
+
+      .star {
+        color: #FF4238;
+      }
+    }
+
+  }
+}
+
+.input {
+  width: 336px;
+  height: 57px;
+  border-radius: 3px;
+  border: 1px solid #1C375A29;
+  padding:0 10px;
+}
+
+.hidden {
+  display: block;
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  top: 40px;
+  right: 10px;
+}
+
+
+input:focus {
+  outline: none !important;
+  border-color: blue;
+  transition: 0.3s ease;
+}
+
+.label input:focus + .labeltex{
+  color: blue;
+}
+
+
+
+

@@ -1,0 +1,20 @@
+.formWrap {
+  display: flex;
+  flex-direction: column;
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .errorText {
+    color: red;
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+  .emptyInput {
+    border: 1px solid red;
+  }
+}
+

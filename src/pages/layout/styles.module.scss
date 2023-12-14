@@ -1,0 +1,47 @@
+body {
+  background: url("../../assets/img/wp2.jpg") center center/cover no-repeat;
+}
+
+.wrap {
+  display: flex;
+  flex-direction: column;
+
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
+    background-color: #000;
+    padding: 20px 20px;
+    border-radius: 5px;
+
+    a {
+      color: white;
+      font-weight: 600;
+      text-decoration: none;
+    }
+  }
+
+  .container {
+    margin: 0 auto;
+    width: 390px;
+
+    .mainFormWrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 50px;
+      padding: 31px 0 27px;
+      background: #FFF;
+      margin-bottom: 260px;
+    }
+  }
+  }
+
+
+:global .active {
+  color: red;
+}

@@ -1,0 +1,31 @@
+.terms {
+  display: flex;
+  margin-bottom: 20px;
+  align-items: center;
+
+  .checkbox {
+    height: 18px;
+    width: 18px;
+    border-radius: 4px;
+    background:  #1C375A29;
+    border: 1px solid #1C375A29;
+    color: #1C375A29;
+    margin-right: 3px;
+  }
+
+  .text {
+    font-size: 12px;
+    line-height: 15.12px;
+    color: #1B2B41B8;
+    margin-left: 11px;
+
+    .link {
+      margin-left: 5px;
+      font-size: 12px;
+      line-height: 15.12px;
+      color: #1676F3;
+
+    }
+  }
+
+}
