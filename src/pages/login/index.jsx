@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useState} from 'react';
 import styles from "./styles.module.scss";
 import Titlepart from "../../components/title-part";
@@ -17,16 +17,17 @@ import {useForm, Controller} from "react-hook-form";
 const Login = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [chek, setChek] = useState(false)
   const {
     register,
     handleSubmit,
     control,
+    setValue,
     formState: {errors}
   } = useForm();
   const handleTypeChange = (e) => {
     setPassword(e.target.value);
   }
-
   const handleChangeIcon = () => {
     setShowPassword(!showPassword);
   }
@@ -34,6 +35,10 @@ const Login = () => {
   const onSubmit = (data) => {
     console.log(data);
   }
+
+  useEffect(() => {
+    setValue('myCheckbox', chek); // Предполагается, что у вас есть функция setValue из React Hook Form
+  }, [chek]);
 
   return (
     <div className={styles.formWrap}>
@@ -51,7 +56,6 @@ const Login = () => {
           render={({field}) => (<AntInput
             {...field}
             label="Email Address"
-            star="*"
             type="email"
             className={errors.emailAddress ? styles.emptyInput : ''}
           />)}
@@ -65,8 +69,7 @@ const Login = () => {
           rules={{required: true}}
           render={({field, fieldState}) => (<Input
             {...field}
-            label="Password"
-            star="*"
+            label1="Password"
             type={showPassword ? 'text' : 'password'}
             onClick={handleChangeIcon}
             hidden={showPassword ? openEye : hiddenImg}
@@ -76,10 +79,22 @@ const Login = () => {
 
         {errors.password && <p className={styles.errorText}> Password is a required field!</p>}
 
-        <Terms
-          {...register('rememberMe')}
-          text="Remember me"
+        <Controller
+          name="myCheckbox"
+          control={control}
+          defaultValue={chek} // Установите начальное значение как false
+          rules={{required: false}}
+          render={({ field }) =>
+            (
+              <Terms
+                text="Remember me"
+                {...field}
+                setChek={setChek}
+                chek={chek}
+              />
+            )}
         />
+
         <Button
           children="Log in"
         />

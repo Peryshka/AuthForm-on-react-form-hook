@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Input } from 'antd';
 import clsx from 'clsx';
 import styles from "./styles.module.scss";
@@ -9,13 +9,11 @@ const AntInput = (props) => {
     label,
     type,
     star,
-    hidden,
-    onClick,
+    star2,
     value,
     onChange,
     className
   } = props;
-  const condition = type === 'password' || type === 'text';
 
   const emptyField = value === '';
   const emptyInput = clsx(
@@ -26,23 +24,20 @@ const AntInput = (props) => {
   return(
     <div className={styles.inputWrap}>
       <div className={styles.label}>
-        <div className={styles.labelText}>
-          <label htmlFor="inputField" className={styles.labeltex}>{label}</label>
-          <span className={styles.star}>{star}</span>
-        </div>
-        {condition && (
-          <div>
-            <img src={hidden} alt="hidden" className={styles.hidden} onClick={onClick} />
-          </div>
-        )}
-        <Input
-          type={type}
-          id="inputField"
-          value={value}
-          onChange={onChange}
-          size="large"
-          className={emptyInput}
-        />
+       <div  className={styles.form}>
+         <span className={styles.star}>{star}</span>
+         <span className={styles.star2}>{star2}</span>
+         <Input
+           type={type}
+           id="inputField"
+           value={value}
+           onChange={onChange}
+           size="large"
+           className={emptyInput}
+           required
+         />
+         <label htmlFor="inputField" className={styles.labeltex}>{label}</label>
+       </div>
       </div>
     </div>
   )

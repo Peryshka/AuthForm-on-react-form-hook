@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import styles from './styles.module.scss';
 import Titlepart from "../../components/title-part";
 import logoImg from '../../assets/icons/Logo 1.png';
@@ -17,22 +17,30 @@ const Signup = () => {
   const [passwordSecond, setPasswordSecond] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [showSecondPassword, setSecondShowPassword] = useState(false);
+  const [chek, setChek] = useState(false)
+
   const {
     handleSubmit,
     control,
     formState: {errors},
     watch,
-    setError
-  } = useForm();
+    getValues,
+    setError,
+    setValue,
+    clearErrors
+  } = useForm({mode: 'onBlur'});
+
+
+
   const password2 = watch('password', ''); // 'password' - имя поля для отслеживания, '' - значение по умолчанию
   const confirmPassword = watch('confirmPassword', '');
   const handleTypeChange = (e) => {
     setPassword(e.target.value);
   }
 
-  const handleTypeChangeSecond = (e) => {
-    setPasswordSecond(e.target.value);
-  }
+  useEffect(() => {
+    setValue('myCheckbox', chek); // Предполагается, что у вас есть функция setValue из React Hook Form
+  }, [chek]);
 
   const handleChangeIcon = () => {
     setShowPassword(!showPassword);
@@ -48,7 +56,7 @@ const Signup = () => {
 
   // Правила валидации для подтверждения пароля
   const validatePassword = (value) => {
-    console.log(value);
+    // console.log(value);
     if (value === '') {
       setError('confirmPassword', {
         type: 'manual',
@@ -107,7 +115,7 @@ const Signup = () => {
             <AntInput
               {...field}
               label="Email Address"
-              star="*"
+              star2="*"
               type="email"
               className={errors.emailAddress ? styles.emptyInput : ''}
             />)}
@@ -121,7 +129,7 @@ const Signup = () => {
           rules={{required: true}}
           render={({field}) => (<Input
             {...field}
-            label="Password"
+            label1="Password"
             star="*"
             type={showPassword ? 'text' : 'password'}
             onClick={handleChangeIcon}
@@ -135,25 +143,54 @@ const Signup = () => {
         <Controller
           name="confirmPassword"
           control={control}
-          rules={{required: false}}
-          render={({field}) => (
+          rules={{required: true}}
+          render={({field, fieldState}) => (
             <Input
               {...field}
-              label="Confirm Password"
+              label1="Confirm Password"
               onClick={handleChangeSecondIcon}
-              star="*"
+              star2="*"
               type={showSecondPassword ? 'text' : 'password'}
               hidden={showSecondPassword ? openEye : hiddenImg}
               className={errors.confirmPassword || errors.confirmPassword !== errors.password ? styles.emptyInput : ''}
-              onChange={(e) => validatePassword(e.target.value)}
+              onChange={(e) => {
+                const value = e.target.value
+                if (value === '') {
+                  setError('confirmPassword', {
+                    type: 'manual',
+                    message: 'Confirm Password is a required field!',
+                  })
+                } else if (value !== password2) {
+                  setError('confirmPassword', {
+                    type: 'manual',
+                    message: 'Passwords mismatch!',
+                  });
+                } else if (value === password2) {
+                  clearErrors('confirmPassword')
+                } else {
+                  clearErrors('confirmPassword')
+                }
+                field.onChange(value)
+              }}
             />)}
         />
 
-        <p className={styles.errorText}>{errors.confirmPassword?.message}</p>
+        {errors.confirmPassword && <p className={styles.errorText}>Confirm password is a required field!</p>}
 
-        <Terms
-          text="I have read and agree to the"
-          link="Terms of Service"
+        <Controller
+          name="myCheckbox"
+          control={control}
+          defaultValue={chek} // Установите начальное значение как false
+          render={({ field }) =>
+            (
+            <Terms
+              text="I have read and agree to the"
+              link="Terms of Service"
+              {...field}
+              setChek={setChek}
+              chek={chek}
+            />
+          )}
         />
         <Button
           children="Get Started"

@@ -1,25 +1,51 @@
 .inputWrap {
   display: flex;
-  margin-bottom: 16px;
+  margin-top: 16px;
+  flex-direction: column;
 
   .label {
+    margin-top: 16px;
     display: flex;
     flex-direction: column;
-    position: relative;
 
     .labelText {
       display: flex;
       margin-bottom: 5px;
+    }
+
+    .form {
+      margin-top: 16px;
+      margin-bottom: 16px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+
+      .star {
+        position: absolute;
+        top: -20px;
+        left: 55px;
+        color: #FF4238;
+      }
+
+      .star2 {
+        position: absolute;
+        top: -20px;
+        left: 80px;
+        color: #FF4238;
+      }
 
       .labeltex {
+        position: absolute;
+        top: -20px;
+        pointer-events: none; /* Чтобы метка не перехватывала события ввода */
         font-size: 12px;
         font-style: normal;
         line-height: normal;
-        color: #1B2B41B8;
+        transition: all 0.3s ease;
       }
 
-      .star {
-        color: #FF4238;
+      input:focus {
+        border: 1px solid blue;
       }
     }
 
@@ -31,7 +57,7 @@
   height: 57px;
   border-radius: 3px;
   border: 1px solid #1C375A29;
-  padding:0 10px;
+  padding: 0 10px;
 }
 
 .hidden {
@@ -39,55 +65,6 @@
   width: 24px;
   height: 24px;
   position: absolute;
-  top: 40px;
+  top: 15px;
   right: 10px;
 }
-
-
-//input:focus {
-//  outline: none !important;
-//  border-color: blue;
-//  transition: 0.3s ease;
-//}
-//
-//.label input:focus + label,
-//.label input:not(:placeholder-shown) + label{
-//  color: blue;
-//}
-//
-//.label label.focused {
-//  color: blue;
-//}
-
-
-//.form-fields-group {
-//  position: relative;
-//}
-//
-//.form-fields-group-label {
-//  position: absolute;
-//  font-size: 13px;
-//  color: #27252a;
-//  font-family: 'Roboto', sans-serif;
-//  top: 10px;
-//  left: 15px;
-//}
-
-//.form-fields-input {
-//  width: 300px;
-//  padding: 30px 15px 10px;
-//  border: none;
-//  background: #EAEAEE;
-//  color: red;
-//  border-radius: 5px;
-//  font-family: 'Roboto', sans-serif;
-//  font-size: 15px;
-//}
-
-input:focus ~ label, label:focus {
-  color: blue;
-  border: 1px solid blue;
-}
-
-
-

@@ -1,18 +1,23 @@
 import React from 'react';
 import styles from './styles.module.scss';
+import {Link} from 'react-router-dom';
 
 const Terms = (props) => {
   const {
     text,
-    link
+    link,
+    value,
+    setChek,
+    chek
   } = props;
   return(
-    <div className={styles.terms}>
+    <div className={styles.terms} onClick={() => !value}>
      <input
        type="checkbox"
+       onChange={event => setChek(!chek)}
       className={styles.checkbox}
      />
-      <p className={styles.text}>{text}<a href="#" className={styles.link}>{link}</a></p>
+      <p className={styles.text}>{text}<Link to="/" className={styles.link}>{link}</Link></p>
     </div>
   )
 }
