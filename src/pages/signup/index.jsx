@@ -102,7 +102,7 @@ const Signup = () => {
         />
 
         {errors.emailAddress && <p className={styles.errorText}>Email Address is a required field!</p>}
-
+        {/*Проверка на ввод символов в поле пароль.Пожалуйста введите в крайнем случае 1 букву 1 символ @$% и 1 цифру*/}
         <Controller
           name="password"
           control={control}
