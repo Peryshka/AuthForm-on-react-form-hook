@@ -50,7 +50,15 @@ const Signup = () => {
   }
 
   const onSubmit = (data) => {
-    console.log(data);
+    if(data.password === data.confirmPassword){
+      console.log(data);
+    } else {
+      setError('confirmPassword', {
+        type: 'manual',
+        message: 'Passwords do not match!',
+      })
+    }
+
   }
 
   return (
@@ -142,7 +150,7 @@ const Signup = () => {
                   } else if (value !== password2) {
                     setError('confirmPassword', {
                       type: 'manual',
-                      message: 'Passwords mismatch!',
+                      message: 'Passwords do not match!',
                     });
                   } else if (value === password2) {
                     clearErrors('confirmPassword')
