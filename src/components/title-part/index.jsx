@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './styles.module.scss';
+
 const Titlepart = (props) => {
   const {
     img,
@@ -7,16 +8,16 @@ const Titlepart = (props) => {
     subtitle,
     googleImg
   } = props;
-  return(
+  return (
     <div className={styles.titleWrap}>
-       <img src={img} alt="logo" className={styles.logoImg} />
-       <h3 className={styles.title}>
-         {title}
-       </h3>
+      <img src={img} alt="logo" className={styles.logoImg}/>
+      <h3 className={styles.title}>
+        {title}
+      </h3>
       <p className={styles.subtitle}>
         {subtitle}
       </p>
-      <img src={googleImg} alt="google-image" className={styles.googleImg} />
+      <img src={googleImg} alt="google-image" className={styles.googleImg}/>
       <div className={styles.orWrap}>
         <span className={styles.line}></span>
         <span>OR</span>
@@ -27,3 +28,4 @@ const Titlepart = (props) => {
 }
 
 export default Titlepart;
+

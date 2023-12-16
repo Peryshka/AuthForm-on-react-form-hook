@@ -27,9 +27,8 @@ const Signup = () => {
     getValues,
     setError,
     setValue,
-    clearErrors
+    clearErrors,
   } = useForm({mode: 'onBlur'});
-
 
 
   const password2 = watch('password', ''); // 'password' - имя поля для отслеживания, '' - значение по умолчанию
@@ -53,33 +52,6 @@ const Signup = () => {
   const onSubmit = (data) => {
     console.log(data);
   }
-
-  // Правила валидации для подтверждения пароля
-  const validatePassword = (value) => {
-    // console.log(value);
-    if (value === '') {
-      setError('confirmPassword', {
-        type: 'manual',
-        message: 'Confirm Password is a required field!',
-      })
-    } else if (value !== password2) {
-      setError('confirmPassword', {
-        type: 'manual',
-        message: 'Passwords mismatch!',
-      });
-    } else if (value === password2) {
-      setError('confirmPassword', {
-        type: 'manual',
-        message: '',
-      });
-    } else {
-      setError('confirmPassword', {
-        type: 'manual',
-        message: '',
-      })
-    }
-  }
-
 
   return (
     <div className={styles.formWrap}>
@@ -126,7 +98,13 @@ const Signup = () => {
         <Controller
           name="password"
           control={control}
-          rules={{required: true}}
+          rules={{
+            required: 'Password is a required field!',
+            pattern: {
+              value: /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
+              message: 'Invalid password format',
+            },
+          }}
           render={({field}) => (<Input
             {...field}
             label1="Password"
@@ -138,12 +116,12 @@ const Signup = () => {
           />)}
         />
 
-        {errors.password && <p className={styles.errorText}>Password is a required field!</p>}
+        {errors.password && <p className={styles.errorText}>{errors.password.message}</p>}
 
         <Controller
           name="confirmPassword"
           control={control}
-          rules={{required: true}}
+          rules={{required: 'Confirm Password is a required field!',}}
           render={({field, fieldState}) => (
             <Input
               {...field}
@@ -154,43 +132,47 @@ const Signup = () => {
               hidden={showSecondPassword ? openEye : hiddenImg}
               className={errors.confirmPassword || errors.confirmPassword !== errors.password ? styles.emptyInput : ''}
               onChange={(e) => {
-                const value = e.target.value
-                if (value === '') {
-                  setError('confirmPassword', {
-                    type: 'manual',
-                    message: 'Confirm Password is a required field!',
-                  })
-                } else if (value !== password2) {
-                  setError('confirmPassword', {
-                    type: 'manual',
-                    message: 'Passwords mismatch!',
-                  });
-                } else if (value === password2) {
-                  clearErrors('confirmPassword')
-                } else {
-                  clearErrors('confirmPassword')
+                {
+                  const value = e.target.value;
+                  if (value === '') {
+                    setError('confirmPassword', {
+                      type: 'manual',
+                      message: 'Confirm Password is a required field!',
+                    })
+                  } else if (value !== password2) {
+                    setError('confirmPassword', {
+                      type: 'manual',
+                      message: 'Passwords mismatch!',
+                    });
+                  } else if (value === password2) {
+                    clearErrors('confirmPassword')
+                  } else {
+                    clearErrors('confirmPassword')
+                  }
+
+                  field.onChange(value)
                 }
-                field.onChange(value)
               }}
             />)}
         />
 
-        {errors.confirmPassword && <p className={styles.errorText}>Confirm password is a required field!</p>}
+        {/*{<p className={styles.errorText}>{errors.confirmPassword?.message}</p>}*/}
+        {errors.confirmPassword && <p className={styles.errorText}>{errors.confirmPassword.message}</p>}
 
         <Controller
           name="myCheckbox"
           control={control}
           defaultValue={chek} // Установите начальное значение как false
-          render={({ field }) =>
+          render={({field}) =>
             (
-            <Terms
-              text="I have read and agree to the"
-              link="Terms of Service"
-              {...field}
-              setChek={setChek}
-              chek={chek}
-            />
-          )}
+              <Terms
+                text="I have read and agree to the"
+                link="Terms of Service"
+                {...field}
+                setChek={setChek}
+                chek={chek}
+              />
+            )}
         />
         <Button
           children="Get Started"

@@ -8,7 +8,7 @@ const LinkBlock = (props) => {
     link,
     linkAddress
   } = props;
-  return(
+  return (
     <div className={styles.linkWrap}>
       <span>{text}</span>
       <Link to={linkAddress} className={styles.link}>{link}</Link>
@@ -17,3 +17,4 @@ const LinkBlock = (props) => {
 }
 
 export default LinkBlock;
+

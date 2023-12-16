@@ -6,16 +6,18 @@ const Layout = () => {
   return (
     <div className={styles.wrap}>
       <header>
-        <nav className={styles.menu}>
-          <li>
-            <NavLink to="/">Home</NavLink>
-          </li>
-          <li>
-            <NavLink to="/sign-in">Login</NavLink>
-          </li>
-          <li>
-            <NavLink to="/sign-up">Sign Up</NavLink>
-          </li>
+        <nav>
+         <ul className={styles.menu}>
+           <li>
+             <NavLink to="/">Home</NavLink>
+           </li>
+           <li>
+             <NavLink to="/sign-in">Login</NavLink>
+           </li>
+           <li>
+             <NavLink to="/sign-up">Sign Up</NavLink>
+           </li>
+         </ul>
         </nav>
       </header>
       <div className={styles.container}>
@@ -29,4 +31,6 @@ const Layout = () => {
 }
 
 export default Layout;
+
+
 

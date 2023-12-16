@@ -66,10 +66,17 @@ const Login = () => {
         <Controller
           name="password"
           control={control}
-          rules={{required: true}}
-          render={({field, fieldState}) => (<Input
+          rules={{
+            required: 'Password is a required field',
+            pattern: {
+              value: /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
+              message: 'Invalid password format',
+            },
+          }}
+          render={({field}) => (<Input
             {...field}
             label1="Password"
+            star="*"
             type={showPassword ? 'text' : 'password'}
             onClick={handleChangeIcon}
             hidden={showPassword ? openEye : hiddenImg}
@@ -77,14 +84,14 @@ const Login = () => {
           />)}
         />
 
-        {errors.password && <p className={styles.errorText}> Password is a required field!</p>}
+        {errors.password && <p className={styles.errorText}>{errors.password.message}</p>}
 
         <Controller
           name="myCheckbox"
           control={control}
           defaultValue={chek} // Установите начальное значение как false
           rules={{required: false}}
-          render={({ field }) =>
+          render={({field}) =>
             (
               <Terms
                 text="Remember me"
