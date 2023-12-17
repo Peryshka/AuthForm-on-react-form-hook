@@ -12,6 +12,7 @@ import hiddenImg from '../../assets/icons/closedEye.png';
 import openEye from '../../assets/icons/eyeOpen.png';
 import AntInput from "../../components/ant-input";
 import {useForm, Controller} from "react-hook-form";
+import clsx from 'clsx';
 
 
 const Login = () => {
@@ -76,7 +77,6 @@ const Login = () => {
           render={({field}) => (<Input
             {...field}
             label1="Password"
-            star="*"
             type={showPassword ? 'text' : 'password'}
             onClick={handleChangeIcon}
             hidden={showPassword ? openEye : hiddenImg}
@@ -98,6 +98,7 @@ const Login = () => {
                 {...field}
                 setChek={setChek}
                 chek={chek}
+                className={clsx()}
               />
             )}
         />
