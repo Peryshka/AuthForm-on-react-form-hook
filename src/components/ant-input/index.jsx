@@ -3,7 +3,6 @@ import {Input} from 'antd';
 import clsx from 'clsx';
 import styles from "./styles.module.scss";
 
-
 const AntInput = (props) => {
   const {
     label,
@@ -44,4 +43,7 @@ const AntInput = (props) => {
 }
 
 export default AntInput;
+
+
+
 
